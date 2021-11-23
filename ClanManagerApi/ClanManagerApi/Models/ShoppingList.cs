@@ -67,7 +67,7 @@ namespace ClanManagerApi.Models
 
             if (!isSuccessful)
                 // If the previous action is successful and this one fails, we've just a key/value in the dictionary
-                return new ActionResult(ResultType.Other, "Unable to remov item from list");
+                return new ActionResult(ResultType.Other, "Unable to add item to list");
 
             return new ActionResult("Success");
         }
