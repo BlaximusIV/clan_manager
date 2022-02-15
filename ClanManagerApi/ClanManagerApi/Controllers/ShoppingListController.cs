@@ -1,5 +1,6 @@
 ﻿using ClanManagerApi.Models;
 using ClanManagerApi.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClanManagerApi.Controllers
@@ -8,6 +9,8 @@ namespace ClanManagerApi.Controllers
     /// Controller to manage items on the shared shopping list
     /// </summary>
     [Route("[controller]")]
+    [Route("[action]")]
+    [Authorize(Policy = "User")]
     [ApiController]
     public class ShoppingListController : Controller
     {
