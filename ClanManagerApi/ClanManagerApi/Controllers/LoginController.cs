@@ -23,6 +23,7 @@ namespace ClanManagerApi.Controllers
         private Dictionary<string, string> Users = new Dictionary<string, string>
         {
             // Add Users Locally - Temporary solution until permanent user data datastore found
+            
         };
 
         [HttpPost]
@@ -35,6 +36,7 @@ namespace ClanManagerApi.Controllers
 
             var Claims = new List<Claim>
             {
+                // Temporary, until another user data store is found
                 new Claim("type", "Admin")
             };
 
@@ -42,8 +44,8 @@ namespace ClanManagerApi.Controllers
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityConfiguration.SecurityKey));
 
             var Token = new JwtSecurityToken(
-                securityConfiguration.ValidTokenIssuer,
-                securityConfiguration.ValidAudience,
+                securityConfiguration.TokenIssuer,
+                securityConfiguration.TokenAudience,
                 Claims,
                 expires: DateTime.Now.AddDays(30),
                 signingCredentials: new SigningCredentials(Key, SecurityAlgorithms.HmacSha256));

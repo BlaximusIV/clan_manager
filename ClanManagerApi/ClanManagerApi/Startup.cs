@@ -1,6 +1,5 @@
 using ClanManagerApi.Extensions;
 using ClanManagerApi.Models;
-using ClanManagerApi.Models.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -89,8 +88,8 @@ namespace ClanManagerApi
             var securityConfig = Configuration.GetSecurityConfiguration();
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidIssuer = securityConfig.ValidTokenIssuer,
-                ValidAudience = securityConfig.ValidAudience,
+                ValidIssuer = securityConfig.TokenIssuer,
+                ValidAudience = securityConfig.TokenAudience,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityConfig.SecurityKey)),
                 ClockSkew = System.TimeSpan.Zero
             };
@@ -106,8 +105,8 @@ namespace ClanManagerApi
 
             services.AddAuthorization(cfg =>
             {
-                cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin", "User"));
-                cfg.AddPolicy("User", policy => policy.RequireClaim("type", "User"));
+                cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin"));
+                cfg.AddPolicy("User", policy => policy.RequireClaim("type", "User", "Admin"));
             });
         }
 

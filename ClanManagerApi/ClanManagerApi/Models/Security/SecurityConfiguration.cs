@@ -8,8 +8,8 @@ namespace ClanManagerApi.Models.Security
         [Required]
         public string SecurityKey { get; set; }
         [Required]
-        public string ValidTokenIssuer { get; set; }
+        public string TokenIssuer { get; set; }
         [Required]
-        public string ValidAudience { get; set; }
+        public string TokenAudience { get; set; }
     }
 }

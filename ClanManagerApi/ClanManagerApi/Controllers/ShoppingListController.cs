@@ -9,7 +9,6 @@ namespace ClanManagerApi.Controllers
     /// Controller to manage items on the shared shopping list
     /// </summary>
     [Route("[controller]")]
-    [Route("[action]")]
     [Authorize(Policy = "User")]
     [ApiController]
     public class ShoppingListController : Controller
