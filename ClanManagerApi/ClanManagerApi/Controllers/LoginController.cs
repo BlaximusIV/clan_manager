@@ -23,7 +23,6 @@ namespace ClanManagerApi.Controllers
         private Dictionary<string, string> Users = new Dictionary<string, string>
         {
             // Add Users Locally - Temporary solution until permanent user data datastore found
-            
         };
 
         [HttpPost]
@@ -48,7 +47,7 @@ namespace ClanManagerApi.Controllers
                 securityConfiguration.TokenAudience,
                 Claims,
                 expires: DateTime.Now.AddDays(30),
-                signingCredentials: new SigningCredentials(Key, SecurityAlgorithms.HmacSha256));
+                signingCredentials: new SigningCredentials(Key, SecurityAlgorithms.HmacSha256Signature));
 
             return new OkObjectResult(new JwtSecurityTokenHandler().WriteToken(Token));
         }
